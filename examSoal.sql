@@ -99,19 +99,11 @@ WHERE dept_name = 'Comp. Sci.';
 -- Delete all courses that have never been offered 
 -- (that is, do not occur in the section relation).
 
--- hapus relasi prerequisite terlebih dahulu
-DELETE FROM prereq
-WHERE course_id NOT IN (
-    SELECT course_id
+DELETE FROM 
+    course WHERE course_id NOT IN(
+    SELECT DISTINCT course_id 
     FROM section
-);
-
--- baru hapus course
-DELETE FROM course
-WHERE course_id NOT IN (
-    SELECT course_id
-    FROM section
-);
+    );
 
 -- Question 9
 -- Insert every student whose tot_cred attribute is greater than 100
